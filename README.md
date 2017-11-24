@@ -12,15 +12,18 @@
 - Xcode 7+
 
 ## 例子
-封装的webView和webViewController。
-一个js交互的例子。（包含html 更直观的理解js交互）
+
+### 封装的`webView`和`webViewController`。
+
+### 一个js交互的例子。（包含`html`文件 更直观的理解`js`交互）
+
 
 ================== js交互（js与oc）==================
 
 
 *注入js方法 （把js的方法名称放进数组中进行注入）
 
-*在html中会有这么一个交互方法 window.webkit.messageHandlers.showName.postMessage('xiao黄')
+*在提供的`html`文件中会有这么一个交互方法 window.webkit.messageHandlers.`showName`.postMessage('xiao黄')
 
 *我们只需要知道其中的showName名称并进行注入就行。
 
@@ -34,19 +37,20 @@
 
 *注入成功后必须实现注入字符串时的方法
 
-*在-(NSArray *)scriptMessageHandler 方法中
+*在`-(NSArray *)scriptMessageHandler` 方法中
 
-*我们注入了（return @[@"showName"]）  showName方法名称
+*我们注入了（return @[@"`showName`"]）  `showName`方法名称
 
 *那么“必须”要实现余其名称对应的 -(void)showName:(id)data；方法。
 
 
     - (void*)showName:(id)data
     {
+    //在其中实现项目逻辑
     }
  
 
-================== js交互（oc与js） ==================
+================== `js`交互（`oc与js`） ==================
 
 
 1.OC调用JS方法
@@ -57,10 +61,10 @@
     }
 
 2.使用 点击按钮时注入js方法。
-*无传值 - 在html中有function alertMobile()这么一个方法。
+*无传值 - 在提供的`html`中有function alertMobile()这么一个方法。
 *我们只需要把alertMobile()一样的字符串注入其中就行。
 
-*有传值 - 在html中有function alertName(msg)这么一个方法。
+*有传值 - 在`html`中有function alertName(msg)这么一个方法。
 *我们只需要把alertName(msg)一样的字符串注入其中就行。（msg）为传值字符串。
 
     [self WebBaseViewEvaluateJavaScript:arrJS[view.tag - 1] completionHandler:nil];
